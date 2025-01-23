@@ -1,8 +1,15 @@
-import useToggle from '../components/useToggle'; // Relative path to the file
-import '../styles/styles.css'; // Import the CSS file
+import { useNavigate } from "react-router-dom";
+import useToggle from "../components/useToggle"; // Relative path to the file
+import "../styles/styles.css"; // Import the CSS file
 
 const LandingPage = () => {
+  const navigate = useNavigate(); // Initialize the navigation hook
   useToggle(); // Invoke the custom hook
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    navigate("/dashboard"); // Redirect to the dashboard
+  };
 
   return (
     <div className="container" id="container">
@@ -24,7 +31,7 @@ const LandingPage = () => {
       </div>
 
       <div className="form-container sign-in">
-        <form>
+        <form onSubmit={handleSignIn}>
           <h1>Sign In</h1>
           <div className="social-icons">
             <a href="#" className="icons"><i className="bx bxl-google"></i></a>
@@ -36,7 +43,7 @@ const LandingPage = () => {
           <input type="email" placeholder="Enter E-mail" />
           <input type="password" placeholder="Enter Password" />
           <a href="#">Forget Password?</a>
-          <button>Sign In</button>
+          <button type="submit">Sign In</button>
         </form>
       </div>
 
